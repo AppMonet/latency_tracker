@@ -108,7 +108,9 @@ defmodule LatencyTracker do
           end
         end
       end,
-      max_concurrency: state.max_concurrency
+      max_concurrency: state.max_concurrency,
+      ordered: false,
+      timeout: :timer.seconds(60)
     )
     |> Stream.run()
 

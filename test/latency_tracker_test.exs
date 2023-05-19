@@ -7,17 +7,17 @@ defmodule LatencyTrackerTest do
   end
 
   test "updates ets value every time interval elapses" do
-    opts = [hosts: [[hostname: "google.com", alias: :google]], interval: :timer.seconds(1)]
+    opts = [hosts: [[hostname: "google.com", alias: :google]], interval: 100]
     start_supervised!({LatencyTracker, opts})
     avg = LatencyTracker.average_latency(:google)
     assert is_number(avg)
-    Process.sleep(:timer.seconds(2))
+    Process.sleep(1_000)
     assert avg != LatencyTracker.average_latency(:google)
   end
 
   @tag capture_log: true
   test "logs a warning when latency tracking fails" do
-    opts = [hosts: [[hostname: "invalid.domain", alias: :invalid]], interval: :timer.seconds(1)]
+    opts = [hosts: [[hostname: "invalid.domain", alias: :invalid]], interval: 100]
     start_supervised!({LatencyTracker, opts})
   end
 end
