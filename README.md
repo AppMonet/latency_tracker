@@ -13,17 +13,14 @@ iex(2)> LatencyTracker.average_latency(:google)
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `latency_tracker` to your list of dependencies in `mix.exs`:
-
 ```elixir
 def deps do
   [
-    {:latency_tracker, "~> 0.1.0"}
+    {:latency_tracker, github: "AppMonet/latency_tracker"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/latency_tracker>.
+Unfortunately we cannot publish this library to Hex as it depends on `hauleth/gen_icmp` which is not published on hex and that name is already taken.
+
+The icmp libraries that are on hex require more complex configuration/settings in order to use, for example `:icmp` requires: `sudo setcap cap_net_raw=+ep /path/to/beam.smp`
